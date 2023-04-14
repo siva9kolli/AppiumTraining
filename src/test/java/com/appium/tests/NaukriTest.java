@@ -42,7 +42,6 @@ public class NaukriTest {
 
         wait.until(ExpectedConditions.elementToBeClickable(AppiumBy.androidUIAutomator("new UiSelector().text(\"Enter password\")")));
         androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceIdMatches(\".*et_email\")")).sendKeys("siva@yopmail@.com");
-
         androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Enter password\")")).sendKeys("AppiumTest");
     }
 }
