@@ -7,6 +7,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.devtools.v85.input.model.TouchPoint;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +16,8 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ScrollingTestUsingDynamicCoordinates {
@@ -33,9 +36,37 @@ public class ScrollingTestUsingDynamicCoordinates {
 
         wait = new WebDriverWait(androidDriver, Duration.ofSeconds(30));
         Thread.sleep(5000);
-        scrollToBottom();
-        swipeRightToLeft();
+        jsScroll("Up");
+        jsScroll("Down");
+        jsSwipe("up");
+//        scrollToBottom();
+//        swipeRightToLeft();
     }
+
+    public void jsScroll(String direction){
+        JavascriptExecutor js = (JavascriptExecutor) androidDriver;
+        Map<String, Object> params = new HashMap<>();
+        params.put("direction", direction);
+        params.put("strategy", "-android uiautomator");
+        params.put("selector", "text(\"Oppo\")");
+        js.executeScript("mobile:scroll", params);
+    }
+
+    public void scrollGesture(){
+        JavascriptExecutor js = (JavascriptExecutor) androidDriver;
+        Map<String, Object> params = new HashMap<>();
+        params.put("direction", "down");
+        params.put("percent", 1);
+        androidDriver.executeScript("mobile: scrollGesture", params);
+    }
+
+    public void jsSwipe(String dir){
+        JavascriptExecutor js = (JavascriptExecutor) androidDriver;
+        Map<String, Object> params = new HashMap<>();
+        params.put("direction", dir);
+        js.executeScript("mobile: swipe", params);
+    }
+
 
     public void scrollToBottom(){
         Dimension size = androidDriver.manage().window().getSize();
