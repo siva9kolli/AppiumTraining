@@ -24,6 +24,9 @@ public class TeleDentistryPage {
     @FindBy(css = "input[type='email']")
     WebElement emailInputBox;
 
+    @FindBy(css = "input[type=\"password\"]")
+    WebElement passwordInputBox;
+
     public void login(){
         try {
             Thread.sleep(7000);
@@ -48,6 +51,7 @@ public class TeleDentistryPage {
             e.printStackTrace();
         }
         emailInputBox.sendKeys("test@yopmail.com");
+        passwordInputBox.sendKeys("Test@12345");
     }
 
 }

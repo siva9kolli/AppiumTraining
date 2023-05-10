@@ -23,7 +23,7 @@ public class AppiumBase {
         //desiredCapabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir")+"/src/main/resources/naukri.apk");
         desiredCapabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir")+"/mobileApps/teleDoc.apk");
         //desiredCapabilities.setCapability("chromedriver_autodownload", true);
-        androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+        androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723"), desiredCapabilities);
         androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
 }
